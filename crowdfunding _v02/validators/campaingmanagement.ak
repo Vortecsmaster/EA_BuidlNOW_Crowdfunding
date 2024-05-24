@@ -11,7 +11,7 @@ type Datum {
     deadline: Int
 } 
 
-// shorthand notation for custom types
+// shorthand notation for single data constructor custom types
 // the full version would have the explicit Data Constructor like
 // type Datum { Datum {...fields are the same as above...} }
 
@@ -20,7 +20,7 @@ type Action {
     Update
     Close
 }
-
+// multiple data constructors
 
 type Redeemer {
     action: Action,
