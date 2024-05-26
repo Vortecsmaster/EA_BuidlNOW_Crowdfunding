@@ -1,0 +1,127 @@
+{
+  "preamble": {
+    "title": "rcerrud/crowdfunding",
+    "description": "Aiken contracts for project 'rcerrud/crowdfunding'",
+    "version": "0.0.0",
+    "plutusVersion": "v2",
+    "compiler": {
+      "name": "Aiken",
+      "version": "v1.0.26-alpha+075668b"
+    },
+    "license": "Apache-2.0"
+  },
+  "validators": [
+    {
+      "title": "campaingmanagement.manage_campaign",
+      "datum": {
+        "title": "_datum",
+        "schema": {
+          "$ref": "#/definitions/campaingmanagement~1Datum"
+        }
+      },
+      "redeemer": {
+        "title": "redeemer",
+        "schema": {
+          "$ref": "#/definitions/campaingmanagement~1Redeemer"
+        }
+      },
+      "compiledCode": "5901340100003232323232322323223225333007325333008300600114a22a66601066e1d200200114a22944c020dd5180598049baa00314984d9594ccc014c00cc018dd5000899191919191919192999808180900109924c64a66601c60180022a66602260206ea8020526161533300e3370e90010008a99980898081baa00814985854ccc038cdc3a40080022a66602260206ea80205261616300e375400e2c6e64dd7180800098080011bad300e001300e002375a601800260180046014002600e6ea8004594ccc00cc004c010dd500109919191919191919191919192999809180a0010a4c2c6eb4c048004c048008dd6980800098080011b99375c601c002601c0046eb4c030004c030008dcc9bae300a001300a00237326eb8c020004c014dd50010b1b87480015cd2ab9d5573caae7d5d0aba21",
+      "hash": "7847ff48607a3f24aed5246d03e3d46aafd7c8abf2de19824060a8e2"
+    }
+  ],
+  "definitions": {
+    "Int": {
+      "dataType": "integer"
+    },
+    "String": {
+      "dataType": "#string"
+    },
+    "campaingmanagement/Action": {
+      "title": "Action",
+      "anyOf": [
+        {
+          "title": "Create",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": []
+        },
+        {
+          "title": "Update",
+          "dataType": "constructor",
+          "index": 1,
+          "fields": []
+        },
+        {
+          "title": "Close",
+          "dataType": "constructor",
+          "index": 2,
+          "fields": []
+        }
+      ]
+    },
+    "campaingmanagement/Datum": {
+      "title": "Datum",
+      "anyOf": [
+        {
+          "title": "Datum",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "title": "title",
+              "$ref": "#/definitions/String"
+            },
+            {
+              "title": "description",
+              "$ref": "#/definitions/String"
+            },
+            {
+              "title": "goal",
+              "$ref": "#/definitions/Int"
+            },
+            {
+              "title": "creator",
+              "$ref": "#/definitions/String"
+            },
+            {
+              "title": "campaignId",
+              "$ref": "#/definitions/Int"
+            },
+            {
+              "title": "deadline",
+              "$ref": "#/definitions/Int"
+            }
+          ]
+        }
+      ]
+    },
+    "campaingmanagement/Redeemer": {
+      "title": "Redeemer",
+      "anyOf": [
+        {
+          "title": "Redeemer",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "title": "action",
+              "$ref": "#/definitions/campaingmanagement~1Action"
+            },
+            {
+              "title": "amount",
+              "$ref": "#/definitions/Int"
+            },
+            {
+              "title": "campaignId",
+              "$ref": "#/definitions/Int"
+            },
+            {
+              "title": "donor",
+              "$ref": "#/definitions/String"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
