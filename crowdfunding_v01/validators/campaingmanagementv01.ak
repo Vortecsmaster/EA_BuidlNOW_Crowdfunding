@@ -32,8 +32,8 @@ validator {
     fn manage_campaign(_datum: Datum, redeemer: Redeemer, _scriptContext: ScriptContext) -> Bool {
         when redeemer.action is {
             Update -> update_campaign()
-            Close  -> close_campaign()
-        }
+            Close  -> proposer_claim()
+       }
     }
 }
 
@@ -45,7 +45,7 @@ fn update_campaign() -> Bool {
     True
 }
 
-fn close_campaign() -> Bool {
+fn proposer_claim() -> Bool {
     // The datum is 
     // The redeemer is 
     // The scriptContext is the context of the transaction
