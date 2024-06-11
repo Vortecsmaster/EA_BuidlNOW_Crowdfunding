@@ -9,6 +9,7 @@ type Datum {
     creator: String, //Address
     campaignId: Int,
     deadline: Int
+    current_fund: Int
 } 
 
 // shorthand notation for single data constructor custom types
@@ -16,7 +17,6 @@ type Datum {
 // type Datum { Datum {...fields are the same as above...} }
 
 type Action {
-    Create
     Update
     Close
 }
@@ -32,42 +32,38 @@ type Redeemer {
 validator {
     fn manage_campaign(_datum: Datum, redeemer: Redeemer, _scriptContext: ScriptContext) -> Bool {
         when redeemer.action is {
-            Create -> create_campaign()
             Update -> update_campaign()
-            Close  -> close_campaign()
+            Claim  -> proposer_claim()
         }
     }
 }
-
-
-fn create_campaign() -> Bool {
-    // The datum is 
-    // The redeemer is 
-    // The scriptContext is the context of the transaction
-    // The function should return a boolean value
-    True
-} 
+ 
 
 fn update_campaign() -> Bool {
-    // The datum is 
-    // The redeemer is 
-    // The scriptContext is the context of the transaction
-    // The function should return a boolean value
+    // The output datum should not the same as the input datum.
+    // The output datum should be strictly sent back only to the same scriptAddress 
+    // The datum goal can be updated, only if the datum.current_fund is 0
     True
 }
 
-fn close_campaign() -> Bool {
-    // The datum is 
-    // The redeemer is 
-    // The scriptContext is the context of the transaction
-    // The function should return a boolean value
+fn proposer_claim() -> Bool {
+    // The input datum.current_fund must be equal or greater thatn the datum.goal
+    // The total value of the inputs of the transaction must be EQUAL to datum.current_funds 
+    // All the value from the inputs must go to the proporsers address
+    // The transaction must be signed by the proposer.
+    // The input datum.deadline must have been reached.
+    // step2 - The output value will include some token as prize or POAP
     True
 }
 
-
-// First explanations:
-//     functions
-//     primitives types
-//     custom types
-//     validators
-//     imports (use)
+// Explanations:
+//     step1 - Count the crowfund in the form a token instead of the datum
+//      topics 
+//          - native tokens
+//          - token value bundle
+//          - forward minting policy design pattern
+//     
+//     step2 - Add an NFT as prize/POAP to the proposers
+//      topics
+//          - NFTs
+//          - Parametrized validators 

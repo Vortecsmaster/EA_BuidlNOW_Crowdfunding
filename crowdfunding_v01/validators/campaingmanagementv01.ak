@@ -8,7 +8,8 @@ type Datum {
     goal: Int,
     creator: String, //Address
     campaignId: Int,
-    deadline: Int
+    deadline: Int,
+    current_fund: Int
 } 
 
 // shorthand notation for custom types
@@ -19,7 +20,7 @@ type Action {
     Update
     Close
 }
-
+// multiple data constructors
 
 type Redeemer {
     action: Action,
