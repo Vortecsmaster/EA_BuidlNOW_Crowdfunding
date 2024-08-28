@@ -6,12 +6,12 @@ const lucid = await Lucid.new(new Blockfrost("https://cardano-preview.blockfrost
 
 const paymentCredential: Credential = {
     type: "Key",
-    hash: "2070f8488dd696b78a5f23e38d273550e43660526c4b19cba733b488"
+    hash: "2070f8488dd696b78a5f23e38d273550e43660526c4b19cba733b488"  //taken from cardano-cli generated verification key hash
 };
 
 const stakeCredential: Credential = {
       type: "Key",
-      hash: "8662fe85a22159022d71aebcf4342bcafaa6ede0df2e486a4e751e8e"
+      hash: "8662fe85a22159022d71aebcf4342bcafaa6ede0df2e486a4e751e8e" // taken from cardano-cli generated stake verification key hash
   };
 const address11 = lucid.utils.credentialToAddress(paymentCredential, stakeCredential);
 await Deno.writeTextFile("our.addr", address11);
