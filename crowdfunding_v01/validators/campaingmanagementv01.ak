@@ -1,7 +1,9 @@
-use aiken/transaction.{ScriptContext}
-use aiken/transaction/credential.{VerificationKey}
-use aiken/list.{has}
 use aiken/hash.{Hash, Blake2b_224,}
+use aiken/interval.{Finite}
+use aiken/list.{has}
+use aiken/time.{PosixTime}
+use aiken/transaction.{ScriptContext, ValidityRange}
+use aiken/transaction/credential.{VerificationKey}
 
 //Why not Strings?
 type CFdatum {
@@ -10,7 +12,7 @@ type CFdatum {
     goal: Int,
     creator: ByteArray,
     backer: ByteArray,
-    deadline: Int,
+    deadline: PosixTime,
     current_funds: Int
 } 
 
@@ -36,8 +38,8 @@ validator {
     fn manage_campaign(datum: CFdatum, redeemer: CFredeemer, scriptContext: ScriptContext) -> Bool {
         when redeemer.action is {
             Cancel -> cancel_campaign(datum,redeemer.campaignId, scriptContext.transaction.extra_signatories)
-            Update -> update_campaign()
-            Close  -> claims()
+            Update -> update_campaign(datum, redeemer.campaignId, scriptContext.transaction.extra_signatories)
+            Close  -> claims(datum, redeemer.campaignId, scriptContext.transaction.validity_range)
        }
     }
 }
@@ -54,16 +56,23 @@ fn cancel_campaign(datum: CFdatum, campaignId: Int, signatories: List<Hash<Blake
 // Update conditions
 //    Datum.campaignId == Redeemer.campaignId
 //    Datum.backer => Authorize transaction by signingn it.
-
-fn update_campaign() -> Bool {
-    True
+fn update_campaign(datum: CFdatum, campaignId: Int, signatories: List<Hash<Blake2b_224, VerificationKey>>) -> Bool {
+    datum.campaignId == campaignId                               &&
+    must_be_signed_by(datum.backer, signatories) 
 }
 
-fn claims() -> Bool {
-    // The datum is 
-    // The redeemer is 
-    // The scriptContext is the context of the transaction
-    // The function should return a boolean value
+
+// Claims conditions
+//   *Datum.campaignId == Redeemer.campaignId
+//   *Datum.deadline > scriptContext.transaction.validRange.upperbound
+//   Datum.current_funds >= Datum.goal
+//   Datum.backer == Redeemer.backer
+//   Redeemer.backer = ""
+//   Datum.creator => Authorize transaction by signingn it.
+
+fn claims(datum: CFdatum, campaignId: Int, validrange: ValidityRange ) -> Bool {
+    datum.campaignId == campaignId                               &&
+    must_happen_after(validrange, datum.deadline)               &&
     True
 }
 
@@ -72,10 +81,17 @@ fn must_be_signed_by(verificationKeyHash: ByteArray, signatories: List<Hash<Blak
    has(signatories, verificationKeyHash)
 }
 
+fn must_happen_after(range: ValidityRange, tx_expiration_time: PosixTime) {
+  when range.lower_bound.bound_type is {
+    Finite(tx_latest_time) -> tx_expiration_time < tx_latest_time
+    _ -> False
+  }
+}
 
 // First explanations:
-//     functions
-//     primitives types
-//     custom types
-//     validators
-//     imports (use)
+//      functions
+//      primitives types
+//      type alias
+//      custom types
+//      validators
+//      imports (use)
