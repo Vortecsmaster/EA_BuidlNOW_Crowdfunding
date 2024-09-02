@@ -5,7 +5,7 @@ use aiken/time.{PosixTime}
 use aiken/transaction.{ScriptContext, ValidityRange}
 use aiken/transaction/credential.{VerificationKey}
 
-//Why not Strings?
+// Why not Strings?
 type CFdatum {
     campaignId: Int,
     title: ByteArray,
@@ -39,7 +39,7 @@ validator {
         when redeemer.action is {
             Cancel -> cancel_campaign(datum,redeemer.campaignId, scriptContext.transaction.extra_signatories)
             Update -> update_campaign(datum, redeemer.campaignId, scriptContext.transaction.extra_signatories)
-            Close  -> claims(datum, redeemer.campaignId, scriptContext.transaction.validity_range)
+            Close  -> claims(datum, redeemer.campaignId, scriptContext.transaction.validity_range, scriptContext.transaction.extra_signatories )
        }
     }
 }
@@ -63,35 +63,18 @@ fn update_campaign(datum: CFdatum, campaignId: Int, signatories: List<Hash<Blake
 
 
 // Claims conditions
-//   *Datum.campaignId == Redeemer.campaignId
-//   *Datum.deadline > scriptContext.transaction.validRange.upperbound
+//   Datum.campaignId == Redeemer.campaignId
+//   Datum.deadline > scriptContext.transaction.validRange.upperbound
 //   Datum.current_funds >= Datum.goal
 //   Datum.backer == Redeemer.backer
-//   Redeemer.backer = ""
 //   Datum.creator => Authorize transaction by signingn it.
 
-fn claims(datum: CFdatum, campaignId: Int, validrange: ValidityRange ) -> Bool {
-    datum.campaignId == campaignId                               &&
+fn claims(datum: CFdatum, campaignId: Int, validrange: ValidityRange, signatories: List<Hash<Blake2b_224, VerificationKey>>) -> Bool {
+    datum.campaignId == campaignId                              &&
     must_happen_after(validrange, datum.deadline)               &&
-    True
+    datum.current_funds >= datum.goal                           &&
+    must_be_signed_by(datum.creator, signatories)               
 }
 
-fn must_be_signed_by(verificationKeyHash: ByteArray, signatories: List<Hash<Blake2b_224, VerificationKey>>) -> Bool {
-    // The verificationKeyHash is the hash of the verification key of the signature
-   has(signatories, verificationKeyHash)
-}
 
-fn must_happen_after(range: ValidityRange, tx_expiration_time: PosixTime) {
-  when range.lower_bound.bound_type is {
-    Finite(tx_latest_time) -> tx_expiration_time < tx_latest_time
-    _ -> False
-  }
-}
-
-// First explanations:
-//      functions
-//      primitives types
-//      type alias
-//      custom types
-//      validators
-//      imports (use)
+// This contract is like swiss cheese, full of holes.
