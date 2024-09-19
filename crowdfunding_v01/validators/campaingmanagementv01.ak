@@ -4,7 +4,9 @@ use aiken/collection/list
 use aiken/crypto.{VerificationKeyHash}
 use cardano/transaction.{OutputReference, Transaction}
 
-/// Why not Strings?
+/// shorthand notation for custom types
+/// the full version would have the explicit Data Constructor like
+/// type Datum { Datum {...fields are the same...} }
 pub type CFdatum {
   campaign_id: Int,
   title: ByteArray,
@@ -15,16 +17,15 @@ pub type CFdatum {
   current_funds: Int,
 }
 
-/// shorthand notation for custom types
-/// the full version would have the explicit Data Constructor like
-/// type Datum { Datum {...fields are the same as above...} }
+// Why not Strings?
+
+/// multiple data constructors
 pub type Action {
   Cancel
   Update
   Close
 }
 
-/// multiple data constructors
 pub type CFredeemer {
   campaign_id: Int,
   action: Action,
@@ -67,7 +68,7 @@ validator manage_campaign {
 
 /// Cancellation conditions
 ///    Datum.campaignId == Redeemer.campaignId
-///    Datum.creator => Authorize transaction by signingn it.
+///    Datum.creator => Authorize transaction by signing it.
 ///    Datum.current_funds == 0
 fn cancel_campaign(
   datum: CFdatum,
@@ -83,7 +84,7 @@ fn cancel_campaign(
 
 /// Update conditions
 ///    Datum.campaignId == Redeemer.campaignId
-///    Datum.backer => Authorize his support by signingn the transaction.
+///    Datum.backer => Authorize his support by signing the transaction.
 fn update_campaign(
   datum: CFdatum,
   campaign_id: Int,
