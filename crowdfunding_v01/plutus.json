@@ -1,0 +1,139 @@
+{
+  "preamble": {
+    "title": "rcerrud/crowdfunding",
+    "description": "Aiken contracts for project 'rcerrud/crowdfunding'",
+    "version": "0.0.0",
+    "plutusVersion": "v3",
+    "compiler": {
+      "name": "Aiken",
+      "version": "v1.1.2+unknown"
+    },
+    "license": "Apache-2.0"
+  },
+  "validators": [
+    {
+      "title": "campaingmanagementv01.manage_campaign.spend",
+      "datum": {
+        "title": "datum",
+        "schema": {
+          "$ref": "#/definitions/campaingmanagementv01~1CFdatum"
+        }
+      },
+      "redeemer": {
+        "title": "redeemer",
+        "schema": {
+          "$ref": "#/definitions/campaingmanagementv01~1CFredeemer"
+        }
+      },
+      "compiledCode": "59030c0101003232323232323232322533300332323232325332330093001300b37540042646464a66666602600c2a6646601a6002601e6ea801c4c94ccc0480040344c94cccccc0580040380380384c8c94ccc0540040404c94cccccc0640044c94ccc05c0040484c94cccccc06c00404c04c04c4c8c94ccc0680040544c94cccccc0780040580580580584c94ccc070c07800c4c8c94ccc068c03800454ccc078c074dd50048a80100c8a99980d18090008a99980f180e9baa009150020191533301a3370e90020008a99980f180e9baa00915002019019301b37540102a666030601860346ea80344c8c8c8c8c8c8c94c8ccc080c05001c4cc894ccc088c00c00854ccc088c058dd6980318129baa00a133005375c6008604a6ea80280045280a50375a600a60466ea8068dd6180318119baa01c1533302030180071332253330223003002133005375c604e6050605060506050604a6ea80280045281bad3005302337540346eb0c018c08cdd500e09991299981118018010a99981119b89375a604e60506050604a6ea8028dd6980318129baa00a133005375c6008604a6ea80280045280a50375a600a60466ea8068dd6180318119baa01c370e6eb4c010c088dd5003918121812981298128009119198008008011129998128008a5013253330223371e6eb8c09c008014528899801801800981380091811181198119811981198119811800918108009181018109810981098109810981098109810800980d9baa301e301f301c3754026603a60366ea803454cc0652411965787065637420536f6d65286461746129203d20646174756d0016017375c002603600260360066eb400404cc060004c060008044044044044c058004c05800cdd6800807180980098081baa007370e900000580580580580598081808801180780098061baa002370e90010b1806180680118058009805801180480098031baa001149854cc0112411856616c696461746f722072657475726e65642066616c73650013656153300249011472656465656d65723a20434672656465656d657200165734ae7155ceaab9e5573eae855d12ba41",
+      "hash": "506492a52ed7b507d19002f2f02e7bbd2a144cbb35dab9bf6a2a1ae3"
+    },
+    {
+      "title": "campaingmanagementv01.manage_campaign.else",
+      "compiledCode": "59030c0101003232323232323232322533300332323232325332330093001300b37540042646464a66666602600c2a6646601a6002601e6ea801c4c94ccc0480040344c94cccccc0580040380380384c8c94ccc0540040404c94cccccc0640044c94ccc05c0040484c94cccccc06c00404c04c04c4c8c94ccc0680040544c94cccccc0780040580580580584c94ccc070c07800c4c8c94ccc068c03800454ccc078c074dd50048a80100c8a99980d18090008a99980f180e9baa009150020191533301a3370e90020008a99980f180e9baa00915002019019301b37540102a666030601860346ea80344c8c8c8c8c8c8c94c8ccc080c05001c4cc894ccc088c00c00854ccc088c058dd6980318129baa00a133005375c6008604a6ea80280045280a50375a600a60466ea8068dd6180318119baa01c1533302030180071332253330223003002133005375c604e6050605060506050604a6ea80280045281bad3005302337540346eb0c018c08cdd500e09991299981118018010a99981119b89375a604e60506050604a6ea8028dd6980318129baa00a133005375c6008604a6ea80280045280a50375a600a60466ea8068dd6180318119baa01c370e6eb4c010c088dd5003918121812981298128009119198008008011129998128008a5013253330223371e6eb8c09c008014528899801801800981380091811181198119811981198119811800918108009181018109810981098109810981098109810800980d9baa301e301f301c3754026603a60366ea803454cc0652411965787065637420536f6d65286461746129203d20646174756d0016017375c002603600260360066eb400404cc060004c060008044044044044c058004c05800cdd6800807180980098081baa007370e900000580580580580598081808801180780098061baa002370e90010b1806180680118058009805801180480098031baa001149854cc0112411856616c696461746f722072657475726e65642066616c73650013656153300249011472656465656d65723a20434672656465656d657200165734ae7155ceaab9e5573eae855d12ba41",
+      "hash": "506492a52ed7b507d19002f2f02e7bbd2a144cbb35dab9bf6a2a1ae3"
+    }
+  ],
+  "definitions": {
+    "ByteArray": {
+      "dataType": "bytes"
+    },
+    "Int": {
+      "dataType": "integer"
+    },
+    "campaingmanagementv01/Action": {
+      "title": "Action",
+      "description": "shorthand notation for custom types\n the full version would have the explicit Data Constructor like\n type Datum { Datum {...fields are the same as above...} }",
+      "anyOf": [
+        {
+          "title": "Cancel",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": []
+        },
+        {
+          "title": "Update",
+          "dataType": "constructor",
+          "index": 1,
+          "fields": []
+        },
+        {
+          "title": "Close",
+          "dataType": "constructor",
+          "index": 2,
+          "fields": []
+        }
+      ]
+    },
+    "campaingmanagementv01/CFdatum": {
+      "title": "CFdatum",
+      "description": "Why not Strings?",
+      "anyOf": [
+        {
+          "title": "CFdatum",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "title": "campaign_id",
+              "$ref": "#/definitions/Int"
+            },
+            {
+              "title": "title",
+              "$ref": "#/definitions/ByteArray"
+            },
+            {
+              "title": "goal",
+              "$ref": "#/definitions/Int"
+            },
+            {
+              "title": "creator",
+              "$ref": "#/definitions/ByteArray"
+            },
+            {
+              "title": "backer",
+              "$ref": "#/definitions/ByteArray"
+            },
+            {
+              "title": "deadline",
+              "$ref": "#/definitions/Int"
+            },
+            {
+              "title": "current_funds",
+              "$ref": "#/definitions/Int"
+            }
+          ]
+        }
+      ]
+    },
+    "campaingmanagementv01/CFredeemer": {
+      "title": "CFredeemer",
+      "description": "multiple data constructors",
+      "anyOf": [
+        {
+          "title": "CFredeemer",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "title": "campaign_id",
+              "$ref": "#/definitions/Int"
+            },
+            {
+              "title": "action",
+              "$ref": "#/definitions/campaingmanagementv01~1Action"
+            },
+            {
+              "title": "amount",
+              "$ref": "#/definitions/Int"
+            },
+            {
+              "title": "backer",
+              "$ref": "#/definitions/ByteArray"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
