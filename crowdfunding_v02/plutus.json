@@ -3,77 +3,63 @@
     "title": "rcerrud/crowdfunding",
     "description": "Aiken contracts for project 'rcerrud/crowdfunding'",
     "version": "0.0.0",
-    "plutusVersion": "v2",
+    "plutusVersion": "v3",
     "compiler": {
       "name": "Aiken",
-      "version": "v1.0.26-alpha+075668b"
+      "version": "v1.1.2+unknown"
     },
     "license": "Apache-2.0"
   },
   "validators": [
     {
-      "title": "campaingmanagement.manage_campaign",
+      "title": "campaingmanagementv02.manage_campaign.spend",
       "datum": {
-        "title": "_datum",
+        "title": "datum",
         "schema": {
-          "$ref": "#/definitions/campaingmanagement~1Datum"
+          "$ref": "#/definitions/campaingmanagementv02~1CFdatum"
         }
       },
       "redeemer": {
         "title": "redeemer",
         "schema": {
-          "$ref": "#/definitions/campaingmanagement~1Redeemer"
+          "$ref": "#/definitions/campaingmanagementv02~1CFredeemer"
         }
       },
-      "compiledCode": "5901340100003232323232322323223225333007325333008300600114a22a66601066e1d200200114a22944c020dd5180598049baa00314984d9594ccc014c00cc018dd5000899191919191919192999808180900109924c64a66601c60180022a66602260206ea8020526161533300e3370e90010008a99980898081baa00814985854ccc038cdc3a40080022a66602260206ea80205261616300e375400e2c6e64dd7180800098080011bad300e001300e002375a601800260180046014002600e6ea8004594ccc00cc004c010dd500109919191919191919191919192999809180a0010a4c2c6eb4c048004c048008dd6980800098080011b99375c601c002601c0046eb4c030004c030008dcc9bae300a001300a00237326eb8c020004c014dd50010b1b87480015cd2ab9d5573caae7d5d0aba21",
-      "hash": "7847ff48607a3f24aed5246d03e3d46aafd7c8abf2de19824060a8e2"
+      "compiledCode": "59048a0101003232323232323232322533300332323232325332330093001300b37540042646464a66666602600c2a6646601a6002601e6ea801c4c94ccc0480040344c94cccccc0580040380380384c8c94ccc0540040404c94cccccc0640040440440444c8c94ccc06000404c4c94cccccc0700040500500504c8c94ccc06c0040584c94cccccc07c00405c05c05c05c4c94ccc074c07c00c54ccc064c034c06cdd50070991919191919192999810180a00289999112999811980b98129baa00a132323232323253330293370e6eb4c0b801802454ccc0a4c07400454ccc0a4cc02c0100204c94ccc0a8c088c0b0dd5000899b88375a605e605a6ea800400c528180518161baa300f302c375400e29405280a50375a605a605c0046eb4c0b0004c0b0c0b0008dd7181500098151815181500098131baa00a15330244914d6578706563742043616d706169676e207b2063616d706169676e5f69642c2063757272656e745f66756e64732c2063726561746f722c20646561646c696e652c202e2e207d203d20646174756d0016375a600260466ea8068dd6180198119baa01c3004302337540382a666040603000a26644a666044602c60486ea80244c8c94ccc090cdc39bad302900200413300600100314a06eb8c0a0c0a4c0a4c0a4c0a4004c094dd50048a99811a481336578706563742043616d706169676e207b2063616d706169676e5f69642c206261636b65722c202e2e207d203d20646174756d0016375a600260466ea8068dd6180198119baa01c153330203370e900200289999112999811980b98129baa00a13232323232323232533302b3370e6eb4c0c002002c54ccc0accdc48030008a999815998068020050992999816181218171baa0011337100066eb4c0c4c0bcdd50008a50300c302e37546018605c6ea80245280a5014a06eb4c0bcc0c0008dd69817000981718170011bae302c001302c002375a605400260546054002604c6ea802854cc0912401576578706563742043616d706169676e207b2063616d706169676e5f69642c2063757272656e745f66756e64732c20676f616c2c2063726561746f722c20646561646c696e652c202e2e207d203d0a20202020646174756d0016375a600260466ea8068dd6180198119baa01c30043023375403829408c09400488c8cc004004008894ccc098004528099299981199b8f375c605000400a29444cc00c00c004c0a00048c08cc090c090c090c090c090c090c090c0900048c088c08cc08cc08cc08cc08cc08cc08c004dd69800980f1baa015230203021001301e301c375401c2a6603492011965787065637420536f6d65286461746129203d20646174756d0016018375c002603800260380066eb4004050c064004c06400cdd6800808980b000980b0019bad00100e30130013010375400e6e1d200000b00b00b00b00b30103011002300f001300c37540046e1d200216300c300d002300b001300b0023009001300637540022930a9980224811856616c696461746f722072657475726e65642066616c73650013656153300249011472656465656d65723a20434672656465656d657200165734ae7155ceaab9e5573eae855d12ba41",
+      "hash": "0321e837ec01953644644301b662b2e881a93c08f0c24f3ece3b604b"
+    },
+    {
+      "title": "campaingmanagementv02.manage_campaign.else",
+      "compiledCode": "59048a0101003232323232323232322533300332323232325332330093001300b37540042646464a66666602600c2a6646601a6002601e6ea801c4c94ccc0480040344c94cccccc0580040380380384c8c94ccc0540040404c94cccccc0640040440440444c8c94ccc06000404c4c94cccccc0700040500500504c8c94ccc06c0040584c94cccccc07c00405c05c05c05c4c94ccc074c07c00c54ccc064c034c06cdd50070991919191919192999810180a00289999112999811980b98129baa00a132323232323253330293370e6eb4c0b801802454ccc0a4c07400454ccc0a4cc02c0100204c94ccc0a8c088c0b0dd5000899b88375a605e605a6ea800400c528180518161baa300f302c375400e29405280a50375a605a605c0046eb4c0b0004c0b0c0b0008dd7181500098151815181500098131baa00a15330244914d6578706563742043616d706169676e207b2063616d706169676e5f69642c2063757272656e745f66756e64732c2063726561746f722c20646561646c696e652c202e2e207d203d20646174756d0016375a600260466ea8068dd6180198119baa01c3004302337540382a666040603000a26644a666044602c60486ea80244c8c94ccc090cdc39bad302900200413300600100314a06eb8c0a0c0a4c0a4c0a4c0a4004c094dd50048a99811a481336578706563742043616d706169676e207b2063616d706169676e5f69642c206261636b65722c202e2e207d203d20646174756d0016375a600260466ea8068dd6180198119baa01c153330203370e900200289999112999811980b98129baa00a13232323232323232533302b3370e6eb4c0c002002c54ccc0accdc48030008a999815998068020050992999816181218171baa0011337100066eb4c0c4c0bcdd50008a50300c302e37546018605c6ea80245280a5014a06eb4c0bcc0c0008dd69817000981718170011bae302c001302c002375a605400260546054002604c6ea802854cc0912401576578706563742043616d706169676e207b2063616d706169676e5f69642c2063757272656e745f66756e64732c20676f616c2c2063726561746f722c20646561646c696e652c202e2e207d203d0a20202020646174756d0016375a600260466ea8068dd6180198119baa01c30043023375403829408c09400488c8cc004004008894ccc098004528099299981199b8f375c605000400a29444cc00c00c004c0a00048c08cc090c090c090c090c090c090c090c0900048c088c08cc08cc08cc08cc08cc08cc08c004dd69800980f1baa015230203021001301e301c375401c2a6603492011965787065637420536f6d65286461746129203d20646174756d0016018375c002603800260380066eb4004050c064004c06400cdd6800808980b000980b0019bad00100e30130013010375400e6e1d200000b00b00b00b00b30103011002300f001300c37540046e1d200216300c300d002300b001300b0023009001300637540022930a9980224811856616c696461746f722072657475726e65642066616c73650013656153300249011472656465656d65723a20434672656465656d657200165734ae7155ceaab9e5573eae855d12ba41",
+      "hash": "0321e837ec01953644644301b662b2e881a93c08f0c24f3ece3b604b"
     }
   ],
   "definitions": {
+    "Action": {
+      "title": "Action",
+      "dataType": "integer"
+    },
+    "ByteArray": {
+      "dataType": "bytes"
+    },
     "Int": {
       "dataType": "integer"
     },
-    "String": {
-      "dataType": "#string"
-    },
-    "campaingmanagement/Action": {
-      "title": "Action",
+    "campaingmanagementv02/CFdatum": {
+      "title": "CFdatum",
       "anyOf": [
         {
-          "title": "Create",
-          "dataType": "constructor",
-          "index": 0,
-          "fields": []
-        },
-        {
-          "title": "Update",
-          "dataType": "constructor",
-          "index": 1,
-          "fields": []
-        },
-        {
-          "title": "Close",
-          "dataType": "constructor",
-          "index": 2,
-          "fields": []
-        }
-      ]
-    },
-    "campaingmanagement/Datum": {
-      "title": "Datum",
-      "anyOf": [
-        {
-          "title": "Datum",
+          "title": "Campaign",
           "dataType": "constructor",
           "index": 0,
           "fields": [
             {
-              "title": "title",
-              "$ref": "#/definitions/String"
+              "title": "campaign_id",
+              "$ref": "#/definitions/Int"
             },
             {
-              "title": "description",
-              "$ref": "#/definitions/String"
+              "title": "title",
+              "$ref": "#/definitions/ByteArray"
             },
             {
               "title": "goal",
@@ -81,43 +67,63 @@
             },
             {
               "title": "creator",
-              "$ref": "#/definitions/String"
+              "$ref": "#/definitions/ByteArray"
             },
             {
-              "title": "campaignId",
-              "$ref": "#/definitions/Int"
+              "title": "backer",
+              "$ref": "#/definitions/ByteArray"
             },
             {
               "title": "deadline",
               "$ref": "#/definitions/Int"
+            },
+            {
+              "title": "current_funds",
+              "$ref": "#/definitions/Int"
+            }
+          ]
+        },
+        {
+          "title": "Backer",
+          "dataType": "constructor",
+          "index": 1,
+          "fields": [
+            {
+              "title": "campaign_id",
+              "$ref": "#/definitions/Int"
+            },
+            {
+              "title": "backer",
+              "$ref": "#/definitions/ByteArray"
             }
           ]
         }
       ]
     },
-    "campaingmanagement/Redeemer": {
-      "title": "Redeemer",
+    "campaingmanagementv02/CFredeemer": {
+      "title": "CFredeemer",
+      "description": "multiple data constructors",
       "anyOf": [
         {
-          "title": "Redeemer",
+          "title": "CFredeemer",
           "dataType": "constructor",
           "index": 0,
           "fields": [
             {
+              "title": "campaign_id",
+              "$ref": "#/definitions/Int"
+            },
+            {
               "title": "action",
-              "$ref": "#/definitions/campaingmanagement~1Action"
+              "$ref": "#/definitions/Action"
             },
             {
               "title": "amount",
               "$ref": "#/definitions/Int"
             },
             {
-              "title": "campaignId",
-              "$ref": "#/definitions/Int"
-            },
-            {
-              "title": "donor",
-              "$ref": "#/definitions/String"
+              "title": "backer",
+              "$ref": "#/definitions/ByteArray"
             }
           ]
         }
