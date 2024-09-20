@@ -3,41 +3,63 @@
     "title": "rcerrud/crowdfunding",
     "description": "Aiken contracts for project 'rcerrud/crowdfunding'",
     "version": "0.0.0",
-    "plutusVersion": "v2",
+    "plutusVersion": "v3",
     "compiler": {
       "name": "Aiken",
-      "version": "v1.0.26-alpha+075668b"
+      "version": "v1.1.2+unknown"
     },
     "license": "Apache-2.0"
   },
   "validators": [
     {
-      "title": "campaingmanagement.manage_campaign",
+      "title": "campaignfunding.campaign_funding.mint",
+      "redeemer": {
+        "title": "redeemer",
+        "schema": {
+          "$ref": "#/definitions/crowdfunding_v03~1types~1Redeemer"
+        }
+      },
+      "compiledCode": "5901ce0101003232323232323232322533300332323232325332330093001300b3754004264a6666660220082a666014600460186ea80104c94ccc03c0040284c94cccccc04c0044c94ccc0440040304c94cccccc0540040340340344c8c94ccc05000403c4c94cccccc0600040400400404c8c94ccc05c0040484c94cccccc06c00404c04c04c04c4c94ccc064c06c00c4c8c94ccc05cc03c00454ccc06cc068dd50060a80100b0a99980b99b874800800454ccc06cc068dd50060a80100b0a99980b99b874801000454ccc06cc068dd50060a80100b0a99980b99b874801800454ccc06cc068dd50060a80100b00b180c1baa00b1325333016300e00114a22a66602c66e1d200400114a22a66602c66e1d200600114a22940c05cdd5180d180c1baa00f014375c002603000260300066eb4004040c054004c05400cdd680080698090009809001005805805805980800098069baa004009009009009009375c601c60186ea8008dc3a40002c6018601a004601600260160046012002600c6ea800452615330044911856616c696461746f722072657475726e65642066616c73650013656153300249011272656465656d65723a2052656465656d657200165734ae7155ceaab9e5573eae855d12ba41",
+      "hash": "1143ac1d19c4a385ac46fc99e5e3a8901ca9971bc7c2f940d13f2fc0"
+    },
+    {
+      "title": "campaignfunding.campaign_funding.else",
+      "compiledCode": "5901ce0101003232323232323232322533300332323232325332330093001300b3754004264a6666660220082a666014600460186ea80104c94ccc03c0040284c94cccccc04c0044c94ccc0440040304c94cccccc0540040340340344c8c94ccc05000403c4c94cccccc0600040400400404c8c94ccc05c0040484c94cccccc06c00404c04c04c04c4c94ccc064c06c00c4c8c94ccc05cc03c00454ccc06cc068dd50060a80100b0a99980b99b874800800454ccc06cc068dd50060a80100b0a99980b99b874801000454ccc06cc068dd50060a80100b0a99980b99b874801800454ccc06cc068dd50060a80100b00b180c1baa00b1325333016300e00114a22a66602c66e1d200400114a22a66602c66e1d200600114a22940c05cdd5180d180c1baa00f014375c002603000260300066eb4004040c054004c05400cdd680080698090009809001005805805805980800098069baa004009009009009009375c601c60186ea8008dc3a40002c6018601a004601600260160046012002600c6ea800452615330044911856616c696461746f722072657475726e65642066616c73650013656153300249011272656465656d65723a2052656465656d657200165734ae7155ceaab9e5573eae855d12ba41",
+      "hash": "1143ac1d19c4a385ac46fc99e5e3a8901ca9971bc7c2f940d13f2fc0"
+    },
+    {
+      "title": "campaingmanagementv03.manage_campaign.spend",
       "datum": {
         "title": "_datum",
         "schema": {
-          "$ref": "#/definitions/campaingmanagement~1Datum"
+          "$ref": "#/definitions/crowdfunding_v03~1types~1Datum"
         }
       },
       "redeemer": {
         "title": "redeemer",
         "schema": {
-          "$ref": "#/definitions/campaingmanagement~1Redeemer"
+          "$ref": "#/definitions/crowdfunding_v03~1types~1Redeemer"
         }
       },
-      "compiledCode": "5901340100003232323232322323223225333007325333008300600114a22a66601066e1d200200114a22944c020dd5180598049baa00314984d9594ccc014c00cc018dd5000899191919191919192999808180900109924c64a66601c60180022a66602260206ea8020526161533300e3370e90010008a99980898081baa00814985854ccc038cdc3a40080022a66602260206ea80205261616300e375400e2c6e64dd7180800098080011bad300e001300e002375a601800260180046014002600e6ea8004594ccc00cc004c010dd500109919191919191919191919192999809180a0010a4c2c6eb4c048004c048008dd6980800098080011b99375c601c002601c0046eb4c030004c030008dcc9bae300a001300a00237326eb8c020004c014dd50010b1b87480015cd2ab9d5573caae7d5d0aba21",
-      "hash": "7847ff48607a3f24aed5246d03e3d46aafd7c8abf2de19824060a8e2"
+      "compiledCode": "5901cc0101003232323232323232322533300332323232325332330093001300b37540042646464a66666602600c2a66601866e1d2000300e375400c264a666022002018264a66666602a002264a66602600201c264a66666602e00201e01e01e26464a66602c002022264a66666603400202402402426464a666032002028264a66666603a00202a02a02a02a264a666036603a00626464a66603266e1d20000011533301d301c37540182a0040302a66603260220022a66603a60386ea80305400806054ccc064cdc3a40080022a66603a60386ea80305400806054ccc064cdc3a400c0022a66603a60386ea803054008060060c068dd5005899299980c18080008a51153330183370e90030008a5114a060326ea8c070c068dd500880b1bae001301a001301a003375a002024602e002602e0066eb400403cc050004c050008034034034034c048004c03cdd500300580580580580598081808801180780098061baa002370e90010b1806180680118058009805801180480098031baa001149854cc0112411856616c696461746f722072657475726e65642066616c73650013656153300249011272656465656d65723a2052656465656d657200165734ae7155ceaab9e5573eae855d12ba41",
+      "hash": "b6ae8450f566fa26bf987d1d2153967db062329e107193b1d2fff350"
+    },
+    {
+      "title": "campaingmanagementv03.manage_campaign.else",
+      "compiledCode": "5901cc0101003232323232323232322533300332323232325332330093001300b37540042646464a66666602600c2a66601866e1d2000300e375400c264a666022002018264a66666602a002264a66602600201c264a66666602e00201e01e01e26464a66602c002022264a66666603400202402402426464a666032002028264a66666603a00202a02a02a02a264a666036603a00626464a66603266e1d20000011533301d301c37540182a0040302a66603260220022a66603a60386ea80305400806054ccc064cdc3a40080022a66603a60386ea80305400806054ccc064cdc3a400c0022a66603a60386ea803054008060060c068dd5005899299980c18080008a51153330183370e90030008a5114a060326ea8c070c068dd500880b1bae001301a001301a003375a002024602e002602e0066eb400403cc050004c050008034034034034c048004c03cdd500300580580580580598081808801180780098061baa002370e90010b1806180680118058009805801180480098031baa001149854cc0112411856616c696461746f722072657475726e65642066616c73650013656153300249011272656465656d65723a2052656465656d657200165734ae7155ceaab9e5573eae855d12ba41",
+      "hash": "b6ae8450f566fa26bf987d1d2153967db062329e107193b1d2fff350"
     }
   ],
   "definitions": {
+    "ByteArray": {
+      "dataType": "bytes"
+    },
     "Int": {
       "dataType": "integer"
     },
-    "String": {
-      "dataType": "#string"
-    },
-    "campaingmanagement/Action": {
+    "crowdfunding_v03/types/Action": {
       "title": "Action",
+      "description": "multiple data constructors",
       "anyOf": [
         {
           "title": "Create",
@@ -52,15 +74,22 @@
           "fields": []
         },
         {
-          "title": "Close",
+          "title": "Support",
           "dataType": "constructor",
           "index": 2,
+          "fields": []
+        },
+        {
+          "title": "Claim",
+          "dataType": "constructor",
+          "index": 3,
           "fields": []
         }
       ]
     },
-    "campaingmanagement/Datum": {
+    "crowdfunding_v03/types/Datum": {
       "title": "Datum",
+      "description": "shorthand notation for single data constructor custom types\n the full version would have the explicit Data Constructor like\n type Datum { Datum {...fields are the same...} }",
       "anyOf": [
         {
           "title": "Datum",
@@ -69,11 +98,11 @@
           "fields": [
             {
               "title": "title",
-              "$ref": "#/definitions/String"
+              "$ref": "#/definitions/ByteArray"
             },
             {
               "title": "description",
-              "$ref": "#/definitions/String"
+              "$ref": "#/definitions/ByteArray"
             },
             {
               "title": "goal",
@@ -81,21 +110,26 @@
             },
             {
               "title": "creator",
-              "$ref": "#/definitions/String"
+              "description": "creator: Address,",
+              "$ref": "#/definitions/ByteArray"
             },
             {
-              "title": "campaignId",
+              "title": "campaign_id",
               "$ref": "#/definitions/Int"
             },
             {
               "title": "deadline",
+              "$ref": "#/definitions/Int"
+            },
+            {
+              "title": "current_fund",
               "$ref": "#/definitions/Int"
             }
           ]
         }
       ]
     },
-    "campaingmanagement/Redeemer": {
+    "crowdfunding_v03/types/Redeemer": {
       "title": "Redeemer",
       "anyOf": [
         {
@@ -105,19 +139,20 @@
           "fields": [
             {
               "title": "action",
-              "$ref": "#/definitions/campaingmanagement~1Action"
+              "$ref": "#/definitions/crowdfunding_v03~1types~1Action"
             },
             {
               "title": "amount",
               "$ref": "#/definitions/Int"
             },
             {
-              "title": "campaignId",
+              "title": "campaign_id",
               "$ref": "#/definitions/Int"
             },
             {
               "title": "donor",
-              "$ref": "#/definitions/String"
+              "description": "donor: Address,",
+              "$ref": "#/definitions/ByteArray"
             }
           ]
         }
