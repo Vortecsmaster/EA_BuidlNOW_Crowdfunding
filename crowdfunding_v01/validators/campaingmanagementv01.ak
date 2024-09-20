@@ -4,9 +4,9 @@ use aiken/collection/list
 use aiken/crypto.{VerificationKeyHash}
 use cardano/transaction.{OutputReference, Transaction}
 
-/// shorthand notation for custom types
-/// the full version would have the explicit Data Constructor like
-/// type Datum { Datum {...fields are the same...} }
+// shorthand notation for custom types
+// the full version would have the explicit Data Constructor like
+// type Datum { Datum {...fields are the same...} }
 pub type CFdatum {
   campaign_id: Int,
   title: ByteArray,
@@ -35,7 +35,7 @@ pub type CFredeemer {
 
 validator manage_campaign {
   spend(
-    datum: Option<CFdatum>,
+    datum: Option<CFdatum>, 
     redeemer: CFredeemer,
     _utxo: OutputReference,
     transaction: Transaction,
@@ -75,11 +75,10 @@ fn cancel_campaign(
   campaign_id: Int,
   signatories: List<VerificationKeyHash>,
 ) -> Bool {
-  and {
-    datum.campaign_id == campaign_id,
-    datum.current_funds == 0,
-    must_be_signed_by(datum.creator, signatories),
-  }
+    datum.campaign_id == campaign_id &&
+    datum.current_funds == 0 &&
+    must_be_signed_by(datum.creator, signatories)
+  
 }
 
 /// Update conditions
@@ -90,10 +89,9 @@ fn update_campaign(
   campaign_id: Int,
   signatories: List<VerificationKeyHash>,
 ) -> Bool {
-  and {
-    datum.campaign_id == campaign_id,
-    must_be_signed_by(datum.backer, signatories),
-  }
+  
+    datum.campaign_id == campaign_id                 &&
+    must_be_signed_by(datum.backer, signatories)
 }
 
 /// Claims conditions
@@ -106,17 +104,15 @@ fn claims(
   campaign_id: Int,
   signatories: List<VerificationKeyHash>,
 ) -> Bool {
-  and {
-    datum.campaign_id == campaign_id,
-    datum.current_funds >= datum.goal,
-    must_be_signed_by(datum.creator, signatories),
-  }
-}
+    datum.campaign_id == campaign_id &&
+    datum.current_funds >= datum.goal &&
+    must_be_signed_by(datum.creator, signatories)
+    } 
 
 fn must_be_signed_by(
   verification_key_hash: VerificationKeyHash,
   signatories: List<VerificationKeyHash>,
 ) -> Bool {
   // The verificationKeyHash is the hash of the verification key of the signature
-  signatories |> list.has(verification_key_hash)
+         list.has(signatories, verification_key_hash)
 }
