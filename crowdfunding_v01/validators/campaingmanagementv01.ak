@@ -17,14 +17,11 @@ pub type CFdatum {
   current_funds: Int,
 }
 
-// Why not Strings?
-
 /// multiple data constructors
-pub type Action {
-  Cancel
-  Update
-  Close
-}
+pub type Action = Int
+//  0 -> Cancel
+//  1 -> Update
+//  2 -> Close}
 
 pub type CFredeemer {
   campaign_id: Int,
@@ -43,21 +40,22 @@ validator manage_campaign {
     expect Some(data) = datum
 
     when redeemer.action is {
-      Cancel ->
+      0 ->
         cancel_campaign(
           data,
           redeemer.campaign_id,
           transaction.extra_signatories,
         )
 
-      Update ->
+      1 ->
         update_campaign(
           data,
           redeemer.campaign_id,
           transaction.extra_signatories,
         )
 
-      Close -> claims(data, redeemer.campaign_id, transaction.extra_signatories)
+      2-> claims(data, redeemer.campaign_id, transaction.extra_signatories)
+      _ -> fail
     }
   }
 
