@@ -7,8 +7,9 @@ Learning smart contract development in the Cardano blockchain has different angl
 
 3. Objectives
 - To provide a decentralized platform for crowdfunding as showcase application.
-- To guarantee security for both backers and Campaign creators.
+- To guarantee security for both *campaign* creators and backers.
 - To facilitate the tamper-proof management of funds.
+- To beware of Bad Bob (#BewareOfBadBob)
 
 3. Functional Requirements
 
@@ -18,7 +19,7 @@ Learning smart contract development in the Cardano blockchain has different angl
 
 3.2. Campaign Management
   - Campaign creators can *create*  new Campaigns, detailing objectives, funding goal, timelines.
-  - Campaing creators can *cancel* created Campaings, as long as this has not been supported.
+  - Campaing creators can *cancel* created Campaings, as long as they has no backers.
 <!-- (or any other condition is required, like a deadline) -->
 <!-- multiple goals and milestones. -->
 <!-- Campaign Dashboard: A dashboard for creators to manage and monitor their Campaigns, including fund status, backer interactions, and updates. -->
@@ -32,7 +33,6 @@ Learning smart contract development in the Cardano blockchain has different angl
 - Creators can not be backers.
 - Backers can support a campaing in several instances.
 
-
 <!-- Optional HandsOn -> Retirining Funds: Backers can take out funds according to conditinions (which?). -->
 3.5. Front End App
 - FE feature -> Campaign Search and Discovery: A  search and filter system to help backers find Campaigns of interest.
@@ -42,7 +42,7 @@ Learning smart contract development in the Cardano blockchain has different angl
 
 4.1 Security
 Encryption: Benefits from the strong encryption and self-verification features of the Cardano blockchain.
-Access Control: Control by asimetric key encription mechanism of Cardano address and their corresponding keys, managed by wallet.
+Access Control: Control by asimetric key encription mechanism of Cardano address and their corresponding keys, managed by address/wallet.
 Audit Trails: The blockchain allows to  have a detailed logs of all transactions and changes.
 
 4.2 Reliability
@@ -60,7 +60,7 @@ Smart Contract Language: Aiken is the selected smart contract language.
 5.2 Integration
 Front End framework: Lucid Evolution as first choice for transaction construction on the web application.
 Indexer: Blockfrost (Thru Lucid Evolution) as the service to query the blockchain.
-Wallet Integration: Support integration with cardano wallets using dApp conector.
+Wallet Integration: Support integration with cardano wallets using dApp conector CiP-30 standard.
 
 5.3 Development and Testing
 Development Environment: Set up a development environment with necessary tools and frameworks.
