@@ -88,7 +88,7 @@ fn cancel_campaign(
   validrange: ValidityRange,
 ) -> Bool {
   expect Campaign { campaign_id, current_funds, creator, deadline, .. } = datum
-// Optimization: Use the *and* function for impoving readability of logical operation chain. 
+  // Optimization: Use the *and* function for impoving readability of logical operation chain. 
   and {
     campaign_id == campaign,
     current_funds == 0,
@@ -97,18 +97,17 @@ fn cancel_campaign(
   }
 }
 
-
-
 /// Update conditions
-///    Datum.campaignId == Redeemer.campaignId
-///    Datum.backer => Authorize his support by signingn the transaction.
+///   Datum.campaignId == Redeemer.campaignId
+///   Datum.backer => Authorize his support by signingn the transaction.
+///   Datum.backer /= Datum.creator
 fn update_campaign(
   datum: CFdatum,
   campaign: Int,
   signatories: List<VerificationKeyHash>,
 ) -> Bool {
   expect Campaign { campaign_id, backer, .. } = datum
-// Optimization: Use the *and* function for impoving readability of logical operation chain. 
+  // Optimization: Use the *and* function for impoving readability of logical operation chain. 
   and {
     campaign_id == campaign,
     must_be_signed_by(backer, signatories),
@@ -129,7 +128,7 @@ fn claims(
 ) -> Bool {
   expect Campaign { campaign_id, current_funds, goal, creator, deadline, .. } =
     datum
-// Optimization: Use the *and* function for impoving readability of logical operation chain. 
+  // Optimization: Use the *and* function for impoving readability of logical operation chain. 
   and {
     campaign_id == campaign,
     current_funds >= goal,
@@ -146,8 +145,8 @@ fn must_be_signed_by(
 
   signatories |> list.has(verification_key_hash)
 }
-// Introduce Piping for better readability
 
+// Introduce Piping for better readability
 
 fn must_happen_after(range: ValidityRange, tx_expiration_time: Int) {
   when range.lower_bound.bound_type is {

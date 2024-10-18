@@ -1,27 +1,24 @@
 {
-    "name": "Emurgo Academy Aiken Developer Environment",
-    // "build": {
-    //  "dockerfile": "Dockerfile"
-    // },
-    "image": "nanuijaz/cardano-node-preview:9.1.0",
-    //"dockerComposeFile": "docker-compose.yml",
-    //"service": "ppp",
-    "workspaceFolder": "/home/ubuntu",
-    //"shutdownAction": "stopCompose",
-  
-    // Configure tool-specific properties.
-    "customizations": {
-      // Configure properties specific to VS Code.
-      "vscode": {
-        // Add the IDs of extensions you want installed when the container is created.
-        "extensions": [
-                "tx-pipe/aiken"
-          //    "haskell.haskell",
-        //  "vigoo.stylish-haskell"
-        ],
-        "settings": {
-          //"haskell.formattingProvider": "stylish-haskell"
-        }
+  "name": "Emurgo Academy Aiken Developer Environment",
+  // "build": {
+  //  "dockerfile": "Dockerfile"
+  // },
+  "image": "nanuijaz/cardano-node-preview:9.1.1-predb",
+  //"dockerComposeFile": "docker-compose.yml",
+  "workspaceFolder": "/home/ubuntu",
+  "shutdownAction": "none",
+
+  // Configure tool-specific properties.
+  "customizations": {
+    // Configure properties specific to VS Code.
+    "vscode": {
+      // Add the IDs of extensions you want installed when the container is created.
+      "extensions": [
+          "txpipe.aiken"
+      ],
+      "settings": {
+        
       }
     }
+  }
 }  

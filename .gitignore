@@ -14,3 +14,4 @@ Cargo.lock
 *.pdb
 /crowdfunding _v02/build
 *.lock
+*.json
