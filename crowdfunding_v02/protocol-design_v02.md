@@ -1,56 +1,55 @@
 ### TX 1 - Create a Campaing 
 Inputs:
-  - Enough ADA to cover tx fees
-
+- Enough ADA to cover create campaign tx fees and claims (goal not reached) tx fees.
 Outputs:
-  -UTxO with Crowdfunding Campaing Information (CFdatum)
+- UTxO with Crowdfunding Campaing Information.
 
 Conditions:
-  - There must be a datum that contains the campaing information.
-- 
+- There must be a datum that contains the campaing information.
+ 
 ### TX 2 - Cancel Campaign
 Inputs:
-  - Tx fees
-  - UTxO with Crowdfunding Campaing Information (CFdatum) -to be consumed.
+- Tx fees
+- UTxO with Crowdfunding Campaing Information  -to be consumed.
 
 Outputs:
- - Any remaining value back to campaing creator.  
+- Any remaining value back to campaing creator.  
 
 Conditions:
- - CFdatum.current_funds must be 0.
- - CFdatum.campaignId == Redeemer.campaignId
- - CFdatum.creator => Authorize transaction by signing it.
+- Datum.current_funds must be 0.
+- Datum.campaignId == Redeemer.campaignId
+- Datum.creator => Authorize transaction by signing it.
 
-### TX 3 - Support a Campaign 
+#### TX 3 - Support a Campaign 
 Inputs:
-  - UTxO with Crowdfunding Campaing Information (CFdatum).
-  - UTxO with Support Value + tx fees.
+- UTxO with Crowdfunding Campaing Information.
+- UTxO with Support Value + Tx fees.
 
 Outputs:
-  - UTxO with updated Crowdfunding Campaing Information (CFdatum)
-  - UTxO with Support Value and corresponding CFdatum for support UTxO
-  - 
-Conditions:
-  - CFRedeemer include the supporter and amount.
-  - Support Value must be provided as input value among the non-script input UTxOs.
-  - CFDatum.current_funds must be equal to its input value plus the defined support value (CFredeemer.ammount). 
-
-
-### TX 4 - 
-Inputs:
-- 
-Outputs:
-  - 
-
-Conditions:
-  - 
-
-### TX 5 - 
-Inputs:
-  -
-
-Outputs:
-  -
+- UTxO with Crowdfunding Campaign Information 
+- UTxO with Support Value and corresponding datum for support UTxO
  
 Conditions:
-  - 
+- Redeemer include the supporter and amount.
+- Support Value must be provided as input value among the non-script input UTxOs.
+- Datum.current_funds must be equal to its input value plus the defined support value (CFredeemer.ammount).
+
+### TX 4 - Claims - Goal reach
+Inputs:
+- UTxO with crowdfunding campaing information.
+- All UTxOs with Campaign Datum Id and backers support value.
+- UTxO with Tx fees
+
+Outputs:
+- All value goes to crowdfunding campaign creator. 
+
+
+### TX 5 - Claims - Goal not reach
+Inputs:
+-
+
+Outputs:
+-
+ 
+Conditions:
+- 
