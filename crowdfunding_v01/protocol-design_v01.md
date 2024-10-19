@@ -44,7 +44,7 @@ Outputs:
 - All value goes to crowdfunding campaign creator. 
 
 Conditions:
--
+- For learners activity
 
 ### TX 5 - Claims - Goal not reach
 Inputs:
@@ -57,4 +57,4 @@ Outputs:
 
 
 Conditions:
-- 
+- For learners activity

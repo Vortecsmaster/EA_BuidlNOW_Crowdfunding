@@ -1,5 +1,3 @@
-//// This contract is like swiss cheese, full of holes.
-
 use aiken/collection/list
 use aiken/crypto.{VerificationKeyHash}
 use cardano/transaction.{OutputReference, Transaction}
@@ -18,7 +16,7 @@ pub type CFdatum {
   current_funds: Int,
 }
 
-/// Multiple data constructors
+/// Actions Enumerator
 ///  0 -> Cancel Campaign
 ///  1 -> Support Campaign
 ///  2 -> 
@@ -87,6 +85,7 @@ fn cancel_campaign(
 /// Update conditions
 ///    Datum.campaignId == Redeemer.campaignId
 ///    Datum.backer => Authorize his support by signing the transaction.
+///
 fn support_campaign(
   datum: CFdatum,
   campaign_id: Int,
@@ -121,3 +120,5 @@ fn must_be_signed_by(
   // The verificationKeyHash is the hash of the verification key of the signature
   list.has(signatories, signer)
 }
+
+// This contract is like swiss cheese, full of holes.
