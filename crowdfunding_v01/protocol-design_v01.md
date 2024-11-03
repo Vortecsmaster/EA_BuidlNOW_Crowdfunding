@@ -1,11 +1,13 @@
 ### TX 1 - Create a Campaing 
 Inputs:
 - Enough ADA to cover create campaign tx fees and claims (goal not reached) tx fees.
+
 Outputs:
 - UTxO with Crowdfunding Campaing Information.
 
 Conditions:
 - There must be a datum that contains the campaing information.
+- The creation of the Campaign ID token requires the signature of the Campaign creator.
  
 ### TX 2 - Cancel Campaign
 Inputs:
@@ -26,7 +28,7 @@ Inputs:
 - UTxO with Support Value + Tx fees.
 
 Outputs:
-- UTxO with Crowdfunding Campaign Information 
+- UTxO with Crowdfunding updated Campaign Information 
 - UTxO with Support Value and corresponding datum for support UTxO
  
 Conditions:

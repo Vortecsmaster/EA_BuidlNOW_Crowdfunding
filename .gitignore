@@ -15,3 +15,4 @@ Cargo.lock
 /crowdfunding _v02/build
 *.lock
 *.json
+*.lock

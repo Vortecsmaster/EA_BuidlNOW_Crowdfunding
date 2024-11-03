@@ -1,5 +1,5 @@
 utxoin="c97d077954b9e112612c563ca1409befbdb9d39f16e57e6dd4bea5f468d8415a#0"
-address=$(cat ../compiled/savings.addr) 
+address=$(cat ../compiled/cf_v01.addr) 
 output="5000000000"
 
 cardano-cli conway transaction build \

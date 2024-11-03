@@ -19,7 +19,7 @@ pub type CFdatum {
 /// Actions Enumerator
 ///  0 -> Cancel Campaign
 ///  1 -> Support Campaign
-///  2 -> 
+///  2 -> Claim Funds
 ///
 pub type Action =
   Int
@@ -120,5 +120,4 @@ fn must_be_signed_by(
   // The verificationKeyHash is the hash of the verification key of the signature
   list.has(signatories, signer)
 }
-
 // This contract is like swiss cheese, full of holes.
