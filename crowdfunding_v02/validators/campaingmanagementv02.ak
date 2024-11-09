@@ -10,13 +10,12 @@ pub type CFdatum {
     campaign_id: Int,
     title: ByteArray,
     goal: Int,
-    creator: ByteArray,
-    backer: ByteArray,
+    creator: VerificationKeyHash,
+    backer: VerificationKeyHash,
     deadline: Int,
     current_funds: Int,
   }
-
-  Backer { campaign_id: Int, backer: ByteArray }
+  Backer { campaign_id: Int, backer: VerificationKeyHash }
 }
 
 /// Optimization -> Change to enumerator style Int -> Action
