@@ -1,2 +1,2 @@
 
-export const netid = "Preview";
+export const network = "Preview";
