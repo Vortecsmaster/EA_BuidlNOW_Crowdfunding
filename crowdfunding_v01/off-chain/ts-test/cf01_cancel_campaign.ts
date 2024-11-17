@@ -11,7 +11,6 @@ import {Blockfrost,
         Constr,
         Data,
         fromText } from "npm:@lucid-evolution/lucid";
-//import * as cbor from "https://deno.land/x/cbor@v1.4.1/index.js";
 import bob_signingKey from "/home/cardano/Dev/Wallets/Bob_skey.json" with {type: 'json'};
 import {network} from "./settings.ts"
 import { Result } from "./types.ts";
@@ -31,13 +30,12 @@ const bobStakeCredential: Credential = {
 };
 
 const bobSigningkey = bob_signingKey.ed25519;
-const adr08Signingkey = adr08_signingKey.ed25519;
 
 console.log("bob sk: " + bobSigningkey);
-console.log("adr08 sk: " + adr08Signingkey);
 
 lucid.selectWallet.fromPrivateKey(bobSigningkey);
 const bobAddress = await lucid.wallet().address();
+
 console.log("Address: " + bobAddress);
 
 //read validator from blueprint json file created with aiken
@@ -52,63 +50,64 @@ console.log("Address: " + bobAddress);
   };
 }
 
-const campaignsAddress = validatorToAddress(network, validator,bobStakeCredential); //Bob's staking credential
+const campaignsAddress = validatorToAddress(network, validator, bobStakeCredential); //Bob's staking credential
 
-console.log(campaignsAddress);
+console.log("Validator Address: " + campaignsAddress);
 
 // Create a campaign
-const campaign = async (): Promise<Result<string>> => { 
-   try {
+const cancel_campaign = async (): Promise<Result<string>> => { 
+  try {
   
-     if (!lucid) throw "Uninitialized Lucid";
-     if (!bobAddress) throw "Non defined Bob's address";
-     if (!campaignsAddress) throw "Non defined script address";
+    if (!lucid) throw "Uninitialized Lucid";
+    if (!bobAddress) throw "Non defined Bob's address";
+    if (!campaignsAddress) throw "Non defined script address";
  
-    const timing = Date.now()
-    const deadline = BigInt(timing + 1000 * 60 * 5);
-    console.log("Deadline: " + deadline);
-    const datum = Data.to(new Constr(0, [7n,
-        fromText("Demo Campaign 7"),
-        77000000n,
-        "8060ec982b6188709f63821bece0be6081c74cf13807d52e4b4a108d",
-        "",
-        0n,
-        deadline,
-        0n]));
+    const DatumSchema = Data.Object({
+      campaign_id: Data.Integer(),
+      title: Data.Bytes(),
+      goal: Data.Integer(),
+      creator: Data.Bytes(),
+      backer: Data.Bytes(),
+      amount: Data.Integer(),
+      deadline: Data.Integer(),
+      current_funds: Data.Integer(),
+    })
+    type CFDatum = Data.Static<typeof DatumSchema>;
+    const CFDatum = DatumSchema as unknown as CFDatum;
 
-//   CFDatum -  
-//   campaign_id: Int,
-//   title: ByteArray,
-//   goal: Int,
-//   creator: VerificationKeyHash,
-//   backer: VerificationKeyHash,
-//   amount: Int,
-//   deadline: Int,
-//   current_funds: Int,
-// }
+    const campaigns_utxos = await lucid.utxosAt(campaignsAddress);
+    const campaign_utxo = campaigns_utxos.find((utxo) => {
+      if (utxo.datum) {
+        const dat = Data.from(utxo.datum, CFDatum)
+        return dat.deadline == 1731720041903n
+      }
+    });
+
+    const redeemer = Data.to(0n);
+ console.log("Campaign UTXO: " + campaign_utxo.txHash);
 
     const tx = await lucid
-       .newTx()
-       
-       .pay.ToContract(
-          campaignsAddress,
-          {kind: "inline" , value: datum},
-          {lovelace: 2200000n}
-        )
-       .complete();
+      .newTx()
+      .collectFrom([campaign_utxo], redeemer)
+      .attach.SpendingValidator(validator)
+      .pay.ToAddress(bobAddress, {lovelace: 2000000n})
+      .addSigner(bobAddress)
+      .validFrom(BigInt(Date.now()))
+      .complete({localUPLCEval: false});
 
-    const signedTx = await tx.sign.withWallet().complete();
-    const txHash = await signedTx.submit();
+    //  const signedTx = await tx.sign.withWallet().complete();
+    //  const txHash = await signedTx.submit();
 
-     console.log("TODO BIEN!")
-     return { type: "ok", data: txHash };
+      console.log("TODO BIEN!")
+      // return { type: "ok", data: txHash };
+      return { type: "ok", data: "tx Built!" };
     }
    catch (error) {
      console.log("Error: " + error);
      if (error instanceof Error) return { type: "error", error: error };
      return { type: "error", error: new Error(`${JSON.stringify(error)}`) };
-   }
- };
+    }
+  };
 
- let txHash = await campaign()
- console.log("Realized Tx: " + txHash.data);
+let txHash = await cancel_campaign()
+console.log("Realized Tx: " + txHash.data);
