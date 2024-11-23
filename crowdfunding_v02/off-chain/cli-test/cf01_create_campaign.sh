@@ -1,12 +1,12 @@
-utxoin="c97d077954b9e112612c563ca1409befbdb9d39f16e57e6dd4bea5f468d8415a#0"
-address=$(cat ../compiled/cf_v01.addr) 
-output="5000000000"
+utxoin="832cf06b2e388a4569bfce92b79c0a506b5f45df76ba3c4cc7e6e7bff6086770#4"
+address=$(cat ../compiled/crowdf01.addr)
+output="2000000"
 
 cardano-cli conway transaction build \
   $PREVIEW \
   --tx-in $utxoin \
   --tx-out $address+$output \
-  --tx-out-datum-hash-file ../values/CFdatum.json \
+  --tx-out-inline-datum-file ../values/cfdatum.json \
   --change-address $nami3 \
   --out-file createCampaign.unsigned
 
