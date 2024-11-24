@@ -1,5 +1,5 @@
-utxo="78a1e9cc56066af82f373b78b7fd2d4d9b7e513c439afa6c626ca35507db3c8a#2"
-script_utxo="7d55eebf00ffde1e9bd5b6f34c939936adb50030fccd7c6f1fec9332ab123b8d#0"
+utxo="891b6f43d01ebbf22c14c6b034b5cf8e0df1919dfb4ca3d135580e4cab63585b#1"
+script_utxo="8b5ada3bc858c4be38140dbaed811158909a2ee064f47dc2071db4bae5666d05#0"
 script_address=$(cat ../compiled/crowdf01.addr)
 output="2000000"
 creatorPKH=$(cat $HOME/Dev/Wallets/Adr08.pkh)
